@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Stenokardiya xurujining davomiyligi qancha bo‘ladi?",
+    "answer": "1-20 daqiqa",
+    "options": [
+      "1-20 daqiqa",
+      "1 soatdan koʻp",
+      "2-3 soat atrofida",
+      "20-40 daqiqa"
+    ]
+  },
+  {
+    "question": "Stenokardiya xurujida ogʻriq qayerga irradiatsiyalanadi?",
+    "answer": "Hamma sanab o‘tilgan joylarga",
+    "options": [
+      "Kurakka",
+      "Chap qoʻlga",
+      "Chap yelkaga",
+      "Hamma sanab o‘tilgan joylarga"
+    ]
+  }
+]
