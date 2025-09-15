@@ -134,21 +134,26 @@
             </section>
 
             <div class="lesson-list">
-              {% for lesson in lg.lessons.all|dictsort:'modul' %}
-                <section class="progress-card" aria-label="Lesson {{ lesson.title }}">
-                  <div class="progress-head">
-                    <div>
-                      <div style="font-weight:700">{{ lesson.modul }}. {{ lesson.title }}</div>
-                      <a href="{% url 'student_lesson_detail' lesson.id %}">Batafsil 🚀</a>
-                    </div>
-                    <div class="badge">📅 {{ lesson.date }}</div>
-                  </div>
-                  <div class="progress">
-                    <span></span>
-                  </div>
-                </section>
-              {% empty %}
-                <p>Bu guruhda hali darslar yo‘q.</p>
+              {% regroup lg.lessons.all|dictsort:'modul' by modul as modul_list %}
+
+              {% for modul in modul_list %}
+                <div class="modul-block">
+                  <h3>📘 Modul: {{ modul.grouper }}</h3>
+
+                  {% for lesson in modul.list|dictsort:'lesson_number' %}
+                    <section class="progress-card" aria-label="Lesson {{ lesson.title }}">
+                      <div class="progress-head">
+                        <div>
+                          <div style="font-weight:700">{{ lesson.lesson_number }}. {{ lesson.title }}</div>
+                          <a href="{% url 'student_lesson_detail' lesson.id %}">Batafsil 🚀</a>
+                        </div>
+                      </div>
+                      <div class="progress">
+                        <span></span>
+                      </div>
+                    </section>
+                  {% endfor %}
+                </div>
               {% endfor %}
             </div>
           {% endfor %}

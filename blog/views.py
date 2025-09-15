@@ -53,11 +53,11 @@ def student_lessons(request):
     lesson_groups = Lesson_group.objects.filter(
         groups__in=worker.student_groups.all()
     ).prefetch_related("lessons").distinct()
-
+    lesson_nums = lesson_groups.count()
     return render(
         request,
         "student/lesson/lesson.html",
-        {"worker": worker, "lesson_groups": lesson_groups},
+        {"worker": worker, "lesson_groups": lesson_groups , "lesson_nums": lesson_nums},
     )
 
 
@@ -133,13 +133,16 @@ def teacher_lessons(request):
     if not worker:
         return redirect("index")
 
-    lesson_groups = Lesson_group.objects.annotate(max_modul=Max("lessons__modul"))
+    lesson_groups = Lesson_group.objects.filter(
+        teachers=worker
+    ).annotate(max_modul=Max("lessons__modul"))
 
     return render(
         request,
         "teacher/lesson/lesson.html",
         {"worker": worker, "lesson_groups": lesson_groups},
     )
+
 
 
 

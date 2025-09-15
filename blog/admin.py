@@ -16,4 +16,5 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Lesson_group)
 class Lesson_group_admin(admin.ModelAdmin):
-    filter_horizontal = ('groups',)  # Dual list (chapda barcha, o‘ngda guruhdagilar)
+    filter_horizontal = ('groups', 'teachers',)  # Dual list (chapda barcha, o‘ngda guruhdagilar)
+
